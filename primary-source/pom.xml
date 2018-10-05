@@ -15,12 +15,12 @@
 
   <name>core project classes</name>
 
-  <dependencies>
+  <!--<dependencies>
     <dependency>
       <groupId>uy.com.antel</groupId>
       <artifactId>logging</artifactId>
     </dependency>
-  </dependencies>
+  </dependencies>-->
 
   <build>
     <plugins>
