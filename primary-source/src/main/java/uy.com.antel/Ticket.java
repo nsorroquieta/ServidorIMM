@@ -21,14 +21,15 @@ public class Ticket {
     }
 
     public void saveMe(){
-
+        TicketPersist tp = new TicketPersist(this);
+        tp.guardarDatos();
     }
 
     public int getTicketId() {
         return ticketId;
     }
 
-    private void setTicketId(int ticketId) {
+    public void setTicketId(int ticketId) {
         this.ticketId = ticketId;
     }
 
