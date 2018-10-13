@@ -5,15 +5,31 @@ import java.util.Date;
 
 public class IMMController {
 
+    private static IMMController instance;
     private ArrayList<Ticket> tickets;
     private static int minCost = 15; // costo cada 15 minutos;
 
-    public IMMController() {
+    public static IMMController getInstance(){
+        if(instance == null){
+            instance = new IMMController();
+        }
+        return instance;
+    }
+
+    private IMMController() {
         tickets = new ArrayList<Ticket>();
     }
 
     public int salesRequest(int agencyId, String carReg, Date salesDate, Date startDate, int minutes, float price){
-        return -1;
+        /*
+        if(salesDate == null) throw new DateException("fecha de venta invalida");
+        if(startDate == null) throw new DateException("fecha de comienzo invalida");
+         */
+        Ticket  t = new Ticket(carReg, salesDate, startDate, minutes);
+        t.setAgencyId(agencyId);
+        t.setTotalPrice(price);
+        t.saveMe();
+        return t.getTicketId();
     }
 
     public float calculateCost(int minutes){

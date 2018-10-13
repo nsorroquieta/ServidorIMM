@@ -1,6 +1,8 @@
 package uy.com.antel;
 
 import javax.jws.WebService;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -16,14 +18,28 @@ public class WebServiceIMM {
         return "Respues de WebServiceIMM: " + inputText;
     }
 
-    public String comprarTicket(int AgenciaVenta, String carResgistry, String salesDateTime, String startDateTime, int minutes){
-        Date fecha = Calendar.getInstance().getTime();
-        Ticket t = new Ticket(carResgistry, fecha, fecha, 10);
-        t.setAgencyId(1);
-        t.saveMe();
-        int precioMinutos = 60;
-        int total = minutes * precioMinutos;
-        return "El precio a pagar es: "+total;
+    public int comprarTicket(int agencyId, String carResgistry, String salesDateTime, String startDateTime, int minutes){
+        IMMController controller = IMMController.getInstance();
+        float price = controller.calculateCost(minutes);
+        Date salesDate = this.getDate(salesDateTime);
+        Date startDate = this.getDate(startDateTime);
+        int retorno = controller.salesRequest(agencyId, carResgistry,salesDate,startDate, minutes, price);
+        return retorno;
+    }
+
+    private Date getDate(String fecha) {
+        Date date1 = null;
+        try {
+            date1 = (Date) new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date1;
+    }
+
+    public float calcularCosto(int minutos){
+        IMMController immcontroller = IMMController.getInstance();
+        return immcontroller.calculateCost(minutos);
     }
 
 }
