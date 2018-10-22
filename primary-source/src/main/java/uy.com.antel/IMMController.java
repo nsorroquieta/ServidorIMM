@@ -42,5 +42,16 @@ public class IMMController {
         return retorno;
     }
 
+    private Ticket getTicketById(int ticketId){
+        return new Ticket(ticketId);
+    }
+
+    public int cancellationRequest(int agencyId, int ticketId){
+        if(this.getTicketById(ticketId).getAgencyId() == agencyId){
+            //realizar cancelacion return id
+            return 0;
+        }
+        return -1;
+    }
 
 }

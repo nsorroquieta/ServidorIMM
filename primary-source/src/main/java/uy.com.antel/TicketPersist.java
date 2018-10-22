@@ -45,4 +45,25 @@ public class TicketPersist extends DbConnection {
         return true;
     }
 
+    public void loadTicket(Ticket t){
+        try {
+            String query = "SELECT * FROM tickets WHERE nroTicket = "+t.getTicketId();
+            conn = ds.getConnection();
+            ps = conn.prepareStatement(query);
+            ps.execute();
+            ResultSet rs = ps.getResultSet();
+            if(rs.next())
+            {
+                t.setAgencyId(rs.getInt("agenciaId"));
+                t.setCarRegistration(rs.getString("matricula"));
+                t.setMinutes(rs.getInt("cantMinutos"));
+                t.setSalesDateTime(rs.getDate("fechaVenta"));
+                t.setStartDateTime(rs.getDate("fechaHoraIni"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+
+        }
+    }
+
 }

@@ -20,6 +20,10 @@ public class Ticket {
         this.minutes = minutes;
     }
 
+    public Ticket(int ticketId){
+
+    }
+
     public void saveMe(){
         TicketPersist tp = new TicketPersist(this);
         tp.guardarDatos();
