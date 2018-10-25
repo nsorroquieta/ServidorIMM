@@ -33,11 +33,11 @@ public class WebServiceIMM {
         return immcontroller.calculateCost(minutos);
     }
 
-    /*
+
     public int cancellationRequest(int agencyId, int ticketid){
         IMMController controller = IMMController.getInstance();
         return controller.cancellationRequest(agencyId, ticketid);
     }
-    */
+
 
 }

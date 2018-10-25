@@ -41,17 +41,33 @@ public class IMMController {
         }
         return retorno;
     }
-
-    /*private Ticket getTicketById(int ticketId){
+/*
+    private Ticket getTicketById(int ticketId){
         return new Ticket(ticketId);
     }
-
+*/
     public int cancellationRequest(int agencyId, int ticketId){
-        if(this.getTicketById(ticketId).getAgencyID() == agencyId){
+        /*if(this.getTicketById(ticketId).getAgencyId() == agencyId){
             //realizar cancelacion return id
             return 0;
         }
         return -1;
-    }
 */
+        QueriesIMM queriesIMM = new QueriesIMM();
+        if (queriesIMM.ticketVigente(ticketId,agencyId)){
+            try {
+                queriesIMM.anulaTicket(ticketId,agencyId);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            return 0;
+            
+        }else{
+            //NO EXISTE TICKET ACTIVO PARA ESA AGENCIA CON ESE No.
+            return -1;
+        }
+
+    }
+
 }

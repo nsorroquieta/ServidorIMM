@@ -63,7 +63,6 @@ public class TicketPersist extends DbConnection {
             }
         } catch (SQLException e) {
             e.printStackTrace();
-
         }
     }
     */
