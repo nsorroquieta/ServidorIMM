@@ -25,7 +25,7 @@ public class TicketPersist extends DbConnection {
 
             String saleDate = this.formatDateToDB(ticket.getSaleDate());
             String startDate = this.formatDateToDB(ticket.getStartDate());
-            String query = "INSERT INTO tickets (agencyId, carRegistration, minutes, saleDate, startDate) VALUES("+ticket.getAgencyID()+", '"+ticket.getCarRegistration()+"', "+ticket.getMinutes()+", '"+saleDate+"', '"+startDate+"')";
+            String query = "INSERT INTO tickets (agencyId, carRegistration, minutes, saleDate, startDate,Status) VALUES("+ticket.getAgencyID()+", '"+ticket.getCarRegistration()+"', "+ticket.getMinutes()+", '"+saleDate+"', '"+startDate+"','ACTIVO')";
             conn = ds.getConnection();
             ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.executeUpdate();

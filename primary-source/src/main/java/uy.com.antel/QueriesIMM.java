@@ -18,15 +18,8 @@ public class QueriesIMM extends DbConnection {
         boolean existe= false;
         try{
             //InitialContext initContext = new InitialContext();
-            String query = "select * from tickets where nroTicket="+nroTicket +" and Agencia ='"+agencia+"' and Estado='ACTIVO'";
+            String query = "select * from tickets where id="+nroTicket +" and agencyId ='"+agencia+"' and Status='ACTIVO'";
             conn = ds.getConnection();
-            //ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            //ps.executeUpdate();
-            //ResultSet rs = ps.getGeneratedKeys();
-
-            //DataSource ds = (DataSource)initContext.lookup("java:jboss/datasources/MySqlDS");
-            //Connection conexion = ds.getConnection();
-            //PreparedStatement ps = conexion.prepareStatement("select * from tickets where nroTicket="+nroTicket +" and Agencia ='"+agencia+"' and Estado='ACTIVO'");
             ps = conn.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             existe = rs.next();
@@ -39,43 +32,30 @@ public class QueriesIMM extends DbConnection {
         return existe;
     }
 
-    public  void anulaTicket(int nroTicket, int agencia) throws Exception{
-        // TicketAnulacion t = new TicketAnulacion();
+    public  void anulaTicket(int nroTicket, int agencia){
         if (!ticketVigente(nroTicket,agencia)){
-            //NO EXISTE TICKET ACTIVO PARA ESA AGENCIA CON ESE No.
+            System.out.println("NO EXISTE TIKET-AGENCIA");
         }else{
             try{
-                //InitialContext initContext = new InitialContext();
-                //DataSource ds = (DataSource)initContext.lookup("java:jboss/datasources/MySqlDS");
-                //Connection conexion = ds.getConnection();
                 conn = ds.getConnection();
 
-                String query1 = "update tickets set Estado='ANULADO' where nroTicket="+ nroTicket+ "";
-                ps = conn.prepareStatement(query1, Statement.RETURN_GENERATED_KEYS);
+                String query1 = "update tickets set Status='ANULADO' where id="+ nroTicket+ "";
+                System.out.println("Update tickets anulado"+nroTicket);
+                ps = conn.prepareStatement(query1);
                 ps.executeUpdate();
-
-                //String query2=
-                //PreparedStatement ps2 = conexion.prepareStatement("select SecIdAnul from secuencias where SecId = 1");
-                //ResultSet listAnul = ps2.executeQuery();
-                //listAnul.next();
-                //int proxAnul = listAnul.getInt("SecIdAnul");
 
                 String query3 = " insert into anulaciones (idTicketAnul,agencyId,anulDate) values (?,?,?)";
                 ps = conn.prepareStatement(query3, Statement.RETURN_GENERATED_KEYS);
-                //PreparedStatement ps3 = conexion.prepareStatement(query);
-                //ps.setInt (1,proxAnul);
                 ps.setInt (1, nroTicket);
                 ps.setInt (2, agencia);
                 String anulDate = this.formatDateToDB(Calendar.getInstance().getTime());
-                //SimpleDateFormat formato=new SimpleDateFormat("YYYY/MM/dd HH:mm:ss");
-                //String fechaAnulacion =formato.format(Calendar.getInstance().getTime());
                 ps.setString (3, anulDate);
                 ps.execute();
 
-                //PreparedStatement ps4 = conexion.prepareStatement("update secuencias set SecIdAnul="+ ++proxAnul + " where SecId = 1");
-                //ps4.executeUpdate();
+                System.out.println("Insert anulaciones - "+nroTicket +"-"+agencia+"-"+anulDate);
                 conn.close();
 
-            }catch(Exception e){throw new Exception();}
-        }}
+            }catch(Exception e){e.printStackTrace();}
+        }
+    }
 }
