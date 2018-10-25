@@ -4,37 +4,44 @@ import java.util.Date;
 
 public class Ticket {
 
-    private int ticketId;
-    private int agencyId;
+    private Integer ticketID;
+    private Integer agencyID;
     private String carRegistration;
-    private Date salesDateTime;
-    private Date startDateTime; //Falta indicar hora de comienzo
-    private int minutes; //Faltan los minutos.
-    private float totalPrice; //Esto debería pasarlo la intendencia.
+    private Date startDate;
+    private Date saleDate;
+    private Integer minutes;
+    private Float price;
 
 
-    public Ticket(String carRegistration, Date salesDateTime, Date startDateTime, int minutes) {
-        this.carRegistration = carRegistration;
-        this.salesDateTime = salesDateTime;
-        this.startDateTime = startDateTime;
-        this.minutes = minutes;
+    public Ticket(Integer agencyID, String carRegistration, Date saleDate, Date startDate, Integer minutes) {
+        this.setCarRegistration(carRegistration);
+        this.setStartDate(startDate);
+        this.setMinutes(minutes);
+        this.setSaleDate(saleDate);
     }
 
-    public Ticket(int ticketId){
-
+    public Integer getTicketID() {
+        return ticketID;
     }
 
-    public void saveMe(){
-        TicketPersist tp = new TicketPersist(this);
-        tp.guardarDatos();
+    public void setTicketID(Integer ticketID) {
+        this.ticketID = ticketID;
     }
 
-    public int getTicketId() {
-        return ticketId;
+    public Float getPrice() {
+        return price;
     }
 
-    public void setTicketId(int ticketId) {
-        this.ticketId = ticketId;
+    public void setPrice(Float price) {
+        this.price = price;
+    }
+
+    public Integer getAgencyID() {
+        return agencyID;
+    }
+
+    public void setAgencyID(Integer agencyID) {
+        this.agencyID = agencyID;
     }
 
     public String getCarRegistration() {
@@ -45,42 +52,32 @@ public class Ticket {
         this.carRegistration = carRegistration;
     }
 
-    public Date getSalesDateTime() {
-        return salesDateTime;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setSalesDateTime(Date salesDateTime) {
-        this.salesDateTime = salesDateTime;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
     }
 
-    public Date getStartDateTime() {
-        return startDateTime;
+    public Date getSaleDate() {
+        return saleDate;
     }
 
-    public void setStartDateTime(Date startDateTime) {
-        this.startDateTime = startDateTime;
+    public void setSaleDate(Date saleDate) {
+        this.saleDate = saleDate;
     }
 
-    public int getMinutes() {
-        return this.minutes;
+    public Integer getMinutes() {
+        return minutes;
     }
 
-    public void setMinutes(int minutes) {
+    public void setMinutes(Integer minutes) {
         this.minutes = minutes;
     }
 
-    public float getTotalPrice() {
-        return totalPrice;
+    public void saveMe() {
+        TicketPersist tp = new TicketPersist(this);
+        tp.guardarDatos();
     }
-
-    public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public int getAgencyId() {
-        return agencyId;
-    }
-
-    public void setAgencyId(int agencyId) {
-        this.agencyId = agencyId;
-    }}
+}

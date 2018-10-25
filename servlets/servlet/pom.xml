@@ -13,7 +13,23 @@
   <artifactId>servlet</artifactId>
   <packaging>war</packaging>
   <name>servlet</name>
-
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.2.0</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warName>
+                        WarIMM
+                    </warName>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
   <dependencies>
     <dependency>
       <groupId>uy.com.antel</groupId>

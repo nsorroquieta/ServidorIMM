@@ -9,21 +9,12 @@ import java.util.Date;
 @WebService
 public class WebServiceIMM {
 
-    public String test(String inputText)
-    {
-        Date fechayhora = new Date();
-        Date fechayhora2 = new Date();
-        Ticket ticket = new Ticket("MAA1020", fechayhora, fechayhora2, 10);
-
-        return "Respues de WebServiceIMM: " + inputText;
-    }
-
-    public int comprarTicket(int agencyId, String carResgistry, String salesDateTime, String startDateTime, int minutes){
+    public int comprarTicket(int agencyId, String carRegistration, String inputSalesDate, String insputStartDate, int minutes){
         IMMController controller = IMMController.getInstance();
         float price = controller.calculateCost(minutes);
-        Date salesDate = this.getDate(salesDateTime);
-        Date startDate = this.getDate(startDateTime);
-        int retorno = controller.salesRequest(agencyId, carResgistry,salesDate,startDate, minutes, price);
+        Date salesDate = this.getDate(inputSalesDate);
+        Date startDate = this.getDate(insputStartDate);
+        int retorno = controller.salesRequest(agencyId, carRegistration,salesDate,startDate, minutes, price);
         return retorno;
     }
 
@@ -42,10 +33,11 @@ public class WebServiceIMM {
         return immcontroller.calculateCost(minutos);
     }
 
-
+    /*
     public int cancellationRequest(int agencyId, int ticketid){
         IMMController controller = IMMController.getInstance();
         return controller.cancellationRequest(agencyId, ticketid);
     }
+    */
 
 }

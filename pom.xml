@@ -95,7 +95,6 @@
         <plugin>
           <artifactId>maven-war-plugin</artifactId>
           <version>3.2.0</version>
-
         </plugin>
         <plugin>
           <artifactId>maven-ear-plugin</artifactId>

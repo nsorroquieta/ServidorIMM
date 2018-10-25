@@ -25,11 +25,11 @@ public class IMMController {
         if(salesDate == null) throw new DateException("fecha de venta invalida");
         if(startDate == null) throw new DateException("fecha de comienzo invalida");
          */
-        Ticket  t = new Ticket(carReg, salesDate, startDate, minutes);
-        t.setAgencyId(agencyId);
-        t.setTotalPrice(price);
+        Ticket  t = new Ticket(agencyId, carReg, salesDate, startDate, minutes);
+        t.setAgencyID(agencyId);
+        t.setPrice(price);
         t.saveMe();
-        return t.getTicketId();
+        return t.getTicketID();
     }
 
     public float calculateCost(int minutes){
@@ -42,16 +42,16 @@ public class IMMController {
         return retorno;
     }
 
-    private Ticket getTicketById(int ticketId){
+    /*private Ticket getTicketById(int ticketId){
         return new Ticket(ticketId);
     }
 
     public int cancellationRequest(int agencyId, int ticketId){
-        if(this.getTicketById(ticketId).getAgencyId() == agencyId){
+        if(this.getTicketById(ticketId).getAgencyID() == agencyId){
             //realizar cancelacion return id
             return 0;
         }
         return -1;
     }
-
+*/
 }

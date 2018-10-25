@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class DbConnection {
 
-    protected static String DATASOURCE_CONTEXT = "java:jboss/datasources/MySqlDS";
+    protected static String DATASOURCE_CONTEXT = "java:jboss/datasources/MySqlDS_immDB";
     protected Context ctx = null;
     protected DataSource ds = null;
     protected ResultSet rs = null;

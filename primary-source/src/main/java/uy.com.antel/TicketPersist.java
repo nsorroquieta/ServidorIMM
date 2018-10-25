@@ -23,9 +23,9 @@ public class TicketPersist extends DbConnection {
     public boolean guardarDatos(){
         try {
 
-            String salesDate = this.formatDateToDB(ticket.getSalesDateTime());
-            String startDate = this.formatDateToDB(ticket.getStartDateTime());
-            String query = "INSERT INTO tickets (agenciaId, matricula, cantMinutos, fechaVenta, fechaHoraIni) VALUES("+ticket.getAgencyId()+", '"+ticket.getCarRegistration()+"', "+ticket.getMinutes()+", '"+salesDate+"', '"+startDate+"')";
+            String saleDate = this.formatDateToDB(ticket.getSaleDate());
+            String startDate = this.formatDateToDB(ticket.getStartDate());
+            String query = "INSERT INTO tickets (agencyId, carRegistration, minutes, saleDate, startDate) VALUES("+ticket.getAgencyID()+", '"+ticket.getCarRegistration()+"', "+ticket.getMinutes()+", '"+saleDate+"', '"+startDate+"')";
             conn = ds.getConnection();
             ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.executeUpdate();
@@ -34,7 +34,7 @@ public class TicketPersist extends DbConnection {
             {
                 int insertID = rs.getInt(1);
                 if(insertID > 0){
-                    ticket.setTicketId(insertID);
+                    ticket.setTicketID(insertID);
                 }
                 System.out.println("Insert Id "+insertID);
             }
@@ -45,6 +45,7 @@ public class TicketPersist extends DbConnection {
         return true;
     }
 
+    /*
     public void loadTicket(Ticket t){
         try {
             String query = "SELECT * FROM tickets WHERE nroTicket = "+t.getTicketId();
@@ -65,5 +66,5 @@ public class TicketPersist extends DbConnection {
 
         }
     }
-
+    */
 }
