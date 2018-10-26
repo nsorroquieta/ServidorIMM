@@ -2,6 +2,7 @@ package uy.com.antel;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class IMMController {
 
@@ -61,4 +62,13 @@ public class IMMController {
 
     }
 
+    public void verifUsuPass(String usuario, String password)throws Exception{
+        QueriesIMM qry= new QueriesIMM();
+        qry.verificaUsuario(usuario, password);
+    }
+
+    /*public List<Ticket> obtenerTickets() throws Exception{
+        QueriesIMM query = new QueriesIMM();
+        return query.obtenerTickets();
+    }*/
 }

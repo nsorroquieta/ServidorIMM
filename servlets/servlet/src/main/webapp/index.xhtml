@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+                <h:outputText value="Tickets" style="color: blue"/>
+            <h:dataTable  value="#{interfazBean.tickets}" var="ticket">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Id"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.ticketID}"/>
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Agencia de venta"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.agencyId}">
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Matricula de vehículo"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.carRegistration}"/>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Cantidad de minutos"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.minutes}"/>
+                </h:column>
+               <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Importe total"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.price}"/>
+                </h:column>
+                <h:column>
+                    <!--<f:facet name="header">
+                        <h:outputText value="Estado"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.estado}"/> -->
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Fecha y hora de venta"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.saleDate.time}">
+                       <f:convertDateTime type="both" dateStyle="default" timeStyle="default"/>
+                    </h:outputText>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Fecha y hora de Estacionamiento"/>
+                    </f:facet>
+                    <h:outputText value="#{ticket.startDate.time}">
+                        <f:convertDateTime type="both" dateStyle="default" timeStyle="default"/>
+                    </h:outputText>
+                </h:column>
+            </h:dataTable>
+            </h:form>
+
+
+    </h:body>
+</html>
+
