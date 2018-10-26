@@ -38,7 +38,6 @@ public class QueriesIMM extends DbConnection {
         }else{
             try{
                 conn = ds.getConnection();
-
                 String query1 = "update tickets set Status='ANULADO' where id="+ nroTicket+ "";
                 System.out.println("Update tickets anulado"+nroTicket);
                 ps = conn.prepareStatement(query1);
@@ -54,7 +53,6 @@ public class QueriesIMM extends DbConnection {
 
                 System.out.println("Insert anulaciones - "+nroTicket +"-"+agencia+"-"+anulDate);
                 conn.close();
-
             }catch(Exception e){e.printStackTrace();}
         }
     }
